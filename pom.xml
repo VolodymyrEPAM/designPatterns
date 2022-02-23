@@ -17,7 +17,9 @@
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
     <junit.jupiter.version>5.5.2</junit.jupiter.version>
+    <lombok.version>1.18.22</lombok.version>
     <junit.platform.version>1.5.2</junit.platform.version>
+    <assertj.core.version>3.18.1</assertj.core.version>
     <src.dir>src/main</src.dir>
   </properties>
 
@@ -38,6 +40,19 @@
     </dependency>
 
     <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <version>${assertj.core.version}</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>io.github.bonigarcia</groupId>
+      <artifactId>webdrivermanager</artifactId>
+      <version>4.3.1</version>
+    </dependency>
+
+    <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
       <version>3.14.0</version>
@@ -47,6 +62,13 @@
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
       <version>3.11</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${lombok.version}</version>
+      <scope>provided</scope>
     </dependency>
 
   </dependencies>

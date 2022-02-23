@@ -1,19 +1,24 @@
 package desktop.fragments;
 
 import abstractclasses.fragment.AbstractFragment;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class ExampleFragment extends AbstractFragment {
+public class NavigationBar extends AbstractFragment {
     @FindBy(xpath = "//div[@class='user-nav']")
     private static  WebElement navigationBar;
 
-    public ExampleFragment(WebElement rootElement) {
+    public NavigationBar(WebElement rootElement) {
         super(rootElement);
     }
 
     public static WebElement getNavigationBar() {
         return navigationBar;
+    }
+
+    public static void clickHomeIcon(){
+        navigationBar.findElement(By.xpath("//a[@class='home-icon-link']")).click();
     }
 
     @Override
