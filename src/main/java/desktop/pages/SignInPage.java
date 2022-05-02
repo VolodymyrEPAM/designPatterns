@@ -19,10 +19,12 @@ public class SignInPage extends AbstractPage {
     private WebElement emailInputField;
     @FindBy(xpath = "//form[@id='ap_register_form']//input[@type='password']")
     private WebElement passwordInputField;
-    @FindBy(xpath = "//form[@id='ap_register_form']")
+    @FindBy(xpath = "//div[@class='a-container']//form[@id='ap_register_form']")
     private WebElement registerForm;
+    @FindBy(xpath = "//*[@class='register-iframe']")
+    private WebElement signInFrame;
 
-    public Boolean isFieldDisplayed(String fieldName){
+    public Boolean isFieldDisplayed(String fieldName) {
         return registerForm.findElement(By.xpath(format("//input[@type='%s']", fieldName))).isDisplayed();
     }
 
@@ -35,5 +37,13 @@ public class SignInPage extends AbstractPage {
         super(driver);
     }
 
-    private final WebElement navigationBar = NavigationBar.getNavigationBar();
+    public SignInPage switchToLogInFrame() {
+        return new SignInPage(driver.switchTo().frame(signInFrame));
+    }
+
+    public SignInPage switchOutOfIFrame() {
+        return new SignInPage(driver.switchTo().defaultContent());
+    }
+
+    public NavigationBar navigationBar = new NavigationBar(driver);
 }

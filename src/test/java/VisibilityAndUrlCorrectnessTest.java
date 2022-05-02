@@ -7,17 +7,16 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 
 import org.assertj.core.api.SoftAssertions;
-import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static constants.Constants.*;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 public class VisibilityAndUrlCorrectnessTest {
-    private WebDriver driver = SingletonDriver.getDriver();
-    private List<String> params = new ArrayList<String>() {{
+    private final WebDriver driver = SingletonDriver.getDriver();
+    private final List<String> params = new ArrayList<String>() {{
         add(NAME);
         add(EMAIL);
         add(PASSWORD);
@@ -31,8 +30,7 @@ public class VisibilityAndUrlCorrectnessTest {
 
     @Test
     public void verifyVisibilityOfElementsAndUrlCorrectness() {
-        SignInPage signInPage = new SignInPage(driver);
-
+        SignInPage signInPage = new SignInPage(driver).switchToLogInFrame();
 
         SoftAssertions softly = new SoftAssertions();
         params.forEach(parameter -> softly.assertThat(signInPage.isFieldDisplayed(parameter))
@@ -40,12 +38,13 @@ public class VisibilityAndUrlCorrectnessTest {
                 .isTrue());
         softly.assertAll();
 
-        NavigationBar.clickHomeIcon();
-        assertTrue((driver).getCurrentUrl().equals(HOME_PAGE_URL));
+        NavigationBar navigationBar = signInPage.switchOutOfIFrame().getNavigationBar();
+        navigationBar.clickHomeIcon();
+        assertEquals(HOME_PAGE_URL, (driver).getCurrentUrl());
     }
 
     @After
-    public void tierDown(){
+    public void tierDown() {
         driver.close();
     }
 }
