@@ -2,13 +2,16 @@ package abstractclasses.page;
 
 import driver.SingletonDriver;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 
 public abstract class AbstractPage {
     private String pageUrl;
     private String pageUrlPattern;
+    protected final WebDriver driver;
 
-    public AbstractPage(WebDriver driver) {
-        driver = SingletonDriver.getDriver();
+    protected AbstractPage(WebDriver driver) {
+        this.driver = SingletonDriver.getDriver();
+        PageFactory.initElements(driver, this);
     }
 
     public void setPageUrl(String pageUrl) {
