@@ -41,7 +41,7 @@ public class VisibilityAndUrlCorrectnessTest {
     }
 
     @After
-    public void quitTest() {
+    public void tearDown() {
         SingletonDriver.quitDriver();
     }
 }

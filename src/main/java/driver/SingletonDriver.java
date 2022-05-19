@@ -8,12 +8,13 @@ public class SingletonDriver {
     static WebDriver driver;
 
     private SingletonDriver() {
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
     }
 
     public static WebDriver getDriver() {
         if (null == driver) {
-            WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
+            new SingletonDriver();
         }
         return driver;
     }
