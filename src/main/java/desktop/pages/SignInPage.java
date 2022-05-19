@@ -13,14 +13,19 @@ import static java.lang.String.format;
 
 @Getter
 public class SignInPage extends AbstractPage {
+
     @FindBy(xpath = "//form[@id='ap_register_form']//input[@type='text']")
     private WebElement nameInputField;
+
     @FindBy(xpath = "//form[@id='ap_register_form']//input[@type='email']")
     private WebElement emailInputField;
+
     @FindBy(xpath = "//form[@id='ap_register_form']//input[@type='password']")
     private WebElement passwordInputField;
+
     @FindBy(xpath = "//div[@class='a-container']//form[@id='ap_register_form']")
     private WebElement registerForm;
+
     @FindBy(xpath = "//*[@class='register-iframe']")
     private WebElement signInFrame;
 
@@ -45,5 +50,7 @@ public class SignInPage extends AbstractPage {
         return new SignInPage(driver.switchTo().defaultContent());
     }
 
-    public NavigationBar navigationBar = new NavigationBar(driver);
+    public NavigationBar getNavigationBar() {
+        return new NavigationBar(driver);
+    }
 }

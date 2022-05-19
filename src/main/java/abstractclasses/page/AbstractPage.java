@@ -9,7 +9,7 @@ public abstract class AbstractPage {
     private String pageUrlPattern;
     protected final WebDriver driver;
 
-    public AbstractPage(WebDriver driver) {
+    protected AbstractPage(WebDriver driver) {
         this.driver = SingletonDriver.getDriver();
         PageFactory.initElements(driver, this);
     }

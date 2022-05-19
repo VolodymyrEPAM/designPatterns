@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 
 import org.assertj.core.api.SoftAssertions;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static constants.Constants.*;
@@ -16,11 +16,8 @@ import static org.junit.Assert.assertEquals;
 
 public class VisibilityAndUrlCorrectnessTest {
     private final WebDriver driver = SingletonDriver.getDriver();
-    private final List<String> params = new ArrayList<String>() {{
-        add(NAME);
-        add(EMAIL);
-        add(PASSWORD);
-    }};
+    private final List<String> params = Arrays.asList(NAME, EMAIL, PASSWORD);
+
 
     @Before
     public void setUp() {
@@ -40,11 +37,11 @@ public class VisibilityAndUrlCorrectnessTest {
 
         NavigationBar navigationBar = signInPage.switchOutOfIFrame().getNavigationBar();
         navigationBar.clickHomeIcon();
-        assertEquals(HOME_PAGE_URL, (driver).getCurrentUrl());
+        assertEquals(HOME_PAGE_URL, driver.getCurrentUrl());
     }
 
     @After
-    public void tierDown() {
-        driver.close();
+    public void quitTest() {
+        SingletonDriver.quitDriver();
     }
 }

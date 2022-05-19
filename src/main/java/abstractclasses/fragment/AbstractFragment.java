@@ -10,7 +10,7 @@ public abstract class AbstractFragment {
     private WebElement rootElement;
     protected final WebDriver driver;
 
-    public AbstractFragment(WebDriver driver) {
+    protected AbstractFragment(WebDriver driver) {
         this.driver = SingletonDriver.getDriver();
         PageFactory.initElements(driver, this);
     }

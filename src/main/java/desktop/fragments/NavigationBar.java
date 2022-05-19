@@ -14,10 +14,6 @@ public class NavigationBar extends AbstractFragment {
         super(driver);
     }
 
-    public static WebElement getNavigationBar() {
-        return navigationBar;
-    }
-
     public void clickHomeIcon() {
         navigationBar.findElement(By.xpath("//a[@class='home-icon-link']")).click();
     }
